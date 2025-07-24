@@ -22,8 +22,21 @@ class QslTutorialApplicationTests {
 	@DisplayName("회원 생성")
 	void t1() {
 		// {noop} : 비밀번호를 암호화하지 않고 그대로 사용
-		SiteUser siteUser1= new SiteUser(null, "qwe123@naver.com", "{noop}1234", "이순신");
-		SiteUser siteUser2 = new SiteUser(null, "asd123@naver.com", "{noop}1234", "홍길동");
+		// SiteUser siteUser1= new SiteUser(null, "qwe123@naver.com", "{noop}1234", "이순신");
+		// SiteUser siteUser2 = new SiteUser(null, "asd123@naver.com", "{noop}1234", "홍길동");
+
+		SiteUser siteUser1 = SiteUser.builder()
+			.userName("이순신")
+			.password("{noop}1234")
+			.email("qwe123@naver.com")
+			.build();
+
+		SiteUser siteUser2 = SiteUser.builder()
+			.userName("홍길동")
+			.password("{noop}1234")
+			.email("asd123@naver.com")
+			.build();
+
 
 		siteUserRepository.saveAll(Arrays.asList(siteUser1, siteUser2));
 	}
