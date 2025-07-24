@@ -1,5 +1,7 @@
 package com.qsl.qsl_tutorial;
 
+import static org.assertj.core.api.AssertionsForClassTypes.*;
+
 import java.util.Arrays;
 
 import org.junit.jupiter.api.DisplayName;
@@ -24,6 +26,16 @@ class QslTutorialApplicationTests {
 		SiteUser siteUser2 = new SiteUser(null, "asd123@naver.com", "{noop}1234", "홍길동");
 
 		siteUserRepository.saveAll(Arrays.asList(siteUser1, siteUser2));
+	}
+
+	@Test
+	@DisplayName("1번 회원을 Qsl로 가져오기")
+	void t2() {
+		SiteUser u1 = siteUserRepository.getQslUser(1L);
+		SiteUser u2 = siteUserRepository.getQslUser(2L);
+
+		assertThat(u1.getEmail()).isEqualTo("qwe123@naver.com");
+		assertThat(u2.getEmail()).isEqualTo("asd123@naver.com");
 	}
 
 }
