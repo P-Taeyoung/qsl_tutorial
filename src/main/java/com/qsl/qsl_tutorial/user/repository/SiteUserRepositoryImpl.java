@@ -1,6 +1,7 @@
 package com.qsl.qsl_tutorial.user.repository;
 
-import com.qsl.qsl_tutorial.user.entity.QSiteUser;
+import static com.qsl.qsl_tutorial.user.entity.QSiteUser.*;
+
 import com.qsl.qsl_tutorial.user.entity.SiteUser;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
@@ -16,7 +17,7 @@ public class SiteUserRepositoryImpl implements SiteUserRepositoryCustom {
 		/*
 		SELECT * FROM site_user WHERE id = 1
 		*/
-		QSiteUser siteUser = QSiteUser.siteUser; // Q클래스가 있기 때문에 사용 가능
+		// QSiteUser siteUser = QSiteUser.siteUser; // Q클래스가 있기 때문에 사용 가능 -> import로 대체
 
 
 		return jpaQueryFactory
