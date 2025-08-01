@@ -2,6 +2,8 @@ package com.qsl.qsl_tutorial.user.repository;
 
 import static com.qsl.qsl_tutorial.user.entity.QSiteUser.*;
 
+import java.util.List;
+
 import com.qsl.qsl_tutorial.user.entity.SiteUser;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
@@ -40,7 +42,7 @@ public class SiteUserRepositoryImpl implements SiteUserRepositoryCustom {
 		/*
 		SELECT *
 		FROM site_user
-		ORDER BU id ASC
+		ORDER By id ASC
 		LIMIT 1;
 		*/
 
@@ -48,5 +50,18 @@ public class SiteUserRepositoryImpl implements SiteUserRepositoryCustom {
 			.selectFrom(siteUser)
 			.orderBy(siteUser.id.asc())
 			.fetchFirst();
+	}
+
+	@Override
+	public List<SiteUser> getQslUsersOrderByAsc() {
+		/*
+		SELECT *
+		FROM site_user
+		ORDER By id ASC
+		*/
+		return jpaQueryFactory
+			.selectFrom(siteUser)
+			.orderBy(siteUser.id.asc())
+			.fetch();
 	}
 }

@@ -3,6 +3,7 @@ package com.qsl.qsl_tutorial;
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -71,6 +72,17 @@ class QslTutorialApplicationTests {
 
 		assertThat(user.getEmail()).isEqualTo("qwe123@naver.com");
 
+	}
+
+	@Test
+	@DisplayName("전체 회원 조회, 오래된 순으로 정렬")
+	void t5() {
+
+		List<SiteUser> users = siteUserRepository.getQslUsersOrderByAsc();
+
+		assertThat(users.size()).isEqualTo(2);
+		assertThat(users.get(0).getEmail()).isEqualTo("qwe123@naver.com");
+		assertThat(users.get(1).getEmail()).isEqualTo("asd123@naver.com");
 	}
 
 }
