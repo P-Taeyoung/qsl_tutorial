@@ -8,11 +8,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.qsl.qsl_tutorial.user.entity.SiteUser;
 import com.qsl.qsl_tutorial.user.repository.SiteUserRepository;
 
 @SpringBootTest
+@Transactional // 각 테스트 케이스에 전부 @Transactional을 붙인 것과 같은 효과
 class QslTutorialApplicationTests {
 
 	@Autowired
