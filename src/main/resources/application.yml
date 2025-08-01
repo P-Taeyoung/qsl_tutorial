@@ -1,7 +1,7 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/qsl
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:mysql://localhost:3306/qsl
     username: user
     password: 1234
     hikari:
@@ -13,7 +13,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
-      show-sql: true
+      show-sql: false
       format-sql: true
     properties:
       hibernate:
