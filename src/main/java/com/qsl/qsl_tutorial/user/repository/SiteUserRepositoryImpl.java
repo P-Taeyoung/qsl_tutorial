@@ -25,4 +25,28 @@ public class SiteUserRepositoryImpl implements SiteUserRepositoryCustom {
 			.where(siteUser.id.eq(id)) // WHERE id = 1
 			.fetchOne(); // 단일 결과를 반환, 결과가 없으면 null 반환
 	}
+
+	@Override
+	public Long getQslCount() {
+		//SELECT COUNT(*) FROM site_user
+
+		return jpaQueryFactory
+			.selectFrom(siteUser)
+			.fetchCount();
+	}
+
+	@Override
+	public SiteUser getQslUserOrderByIdAscOne() {
+		/*
+		SELECT *
+		FROM site_user
+		ORDER BU id ASC
+		LIMIT 1;
+		*/
+
+		return jpaQueryFactory
+			.selectFrom(siteUser)
+			.orderBy(siteUser.id.asc())
+			.fetchFirst();
+	}
 }

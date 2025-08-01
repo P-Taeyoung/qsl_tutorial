@@ -4,6 +4,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 import java.util.Arrays;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ class QslTutorialApplicationTests {
 	@Autowired
 	private SiteUserRepository siteUserRepository;
 
-	@Test
+	@BeforeEach
 	@DisplayName("회원 생성")
 	void t1() {
 		// {noop} : 비밀번호를 암호화하지 않고 그대로 사용
@@ -51,6 +52,25 @@ class QslTutorialApplicationTests {
 
 		assertThat(u1.getEmail()).isEqualTo("qwe123@naver.com");
 		assertThat(u2.getEmail()).isEqualTo("asd123@naver.com");
+	}
+
+	@Test
+	@DisplayName("전체 회원 수")
+	void t3() {
+
+		Long count = siteUserRepository.getQslCount();
+
+		assertThat(count).isGreaterThan(0);
+	}
+
+	@Test
+	@DisplayName("가장 오래된 회원")
+	void t4() {
+
+		SiteUser user = siteUserRepository.getQslUserOrderByIdAscOne();
+
+		assertThat(user.getEmail()).isEqualTo("qwe123@naver.com");
+
 	}
 
 }
